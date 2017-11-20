@@ -3,12 +3,6 @@ const micro = require('micro')
 const PORT = process.env.PORT || 3000
  
 const server = micro(async (req, res) => {
-	// return await P((resolve, reject) => {
-	// 	setTimeout(() => {
-	// 		console.log('Resolve')
-	// 		resolve('done...')
-	// 	}, 1000)
-	// })
   return await P((resolve, reject) => {
     osmosis
       .get('https://www.vesselfinder.com/vessels/LADY-A-IMO-0-MMSI-219019716')
