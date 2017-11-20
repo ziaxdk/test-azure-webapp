@@ -1,0 +1,19 @@
+{
+  "name": "test-azure-webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "micro": "^9.0.2",
+    "osmosis": "^1.1.4"
+  },
+  "engines": {
+    "node": "=> 8.1.4"
+  }
+}
