@@ -3,25 +3,30 @@ const micro = require('micro')
 const PORT = process.env.PORT || 3000
  
 const server = micro(async (req, res) => {
-	return await P((resolve, reject) => {
-		setTimeout(() => {
-			console.log('Resolve')
-			resolve('done...')
-		}, 1000)
-	})
-	// osmosis
-	// .get('www.bt.dk')
-	// .set({
-	//     'title':        'h1',
+	// return await P((resolve, reject) => {
+	// 	setTimeout(() => {
+	// 		console.log('Resolve')
+	// 		resolve('done...')
+	// 	}, 1000)
 	// })
-	// .data(function(listing) {
-	// 	console.log(listing)
-	//     // do something with listing data 
-	// })
-	// .log(console.log)
-	// .error(console.log)
-	// .debug(console.log)
-
+  return await P((resolve, reject) => {
+    osmosis
+      .get('https://www.vesselfinder.com/vessels/LADY-A-IMO-0-MMSI-219019716')
+      .find('main')
+      .set({
+        'date': 'time#last_report_ts@datetime',
+        'lat': 'span[itemprop=latitude]',
+        'lon': 'span[itemprop=longitude]'
+      })
+      .data(listing => {
+        data = listing
+      })
+      // .log(console.log)
+      // .error(console.log)
+      // .debug(console.log)
+      .error(reject)
+      .done(() => { resolve(data) })
+  })
 })
  
 server.listen(PORT, () => console.log('Ready on', PORT))
